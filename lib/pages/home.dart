@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('Personal'),
-                                    Text('100,000.00')
+                                    Text('80,000.00')
                                   ],
                                 ),
                               ),
