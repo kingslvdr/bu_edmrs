@@ -8,13 +8,14 @@ import '../../utils/constants/colors.dart';
 
 class HomeAppBar extends StatelessWidget {
   HomeAppBar({
-    super.key,
+    super.key, required this.showBackArrow,
   });
   final localStorage = GetStorage();
+  final bool showBackArrow;
   @override
   Widget build(BuildContext context) {
     return TAppBar(
-      showBackArrow: false,
+      showBackArrow: showBackArrow,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

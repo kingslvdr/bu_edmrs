@@ -44,7 +44,7 @@ class TTexts {
 
 
   // -- Authentication Headings
-  static const String loginTitle = "Doctor Medical Record System";
+  static const String loginTitle = "Welfare Claim System";
   static const String loginSubTitle = "Login to your account";
   static const String signupTitle = "Let’s create your account";
   static const String forgetPasswordTitle = "Forget password";
