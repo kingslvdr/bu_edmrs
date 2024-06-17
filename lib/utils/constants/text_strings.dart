@@ -58,6 +58,9 @@ class TTexts {
   static const String yourAccountCreatedSubTitle = "Welcome to Your Ultimate Shopping Destination: Your Account is Created, Unleash the Joy of Seamless Online Shopping!";
 
 
+  static const String reimburseTitle = "Welfare Claim Procedure:";
+  static const String reimburseBody = """1. Fill-up welfare claim form and attach supporting documents \n\n2. Submit documents to HR Dept. for checking\n\n3. Retrieve documents from HR Dept. and have it approved by supervisor.\n\n4. Park document at SAP system for payment\n\n5. Submit approved park document to Accounting Department.""";
+
   // -- Product
   static const String popularProducts = "Popular Products";
 

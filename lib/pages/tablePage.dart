@@ -1,5 +1,7 @@
+import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/header_container.dart';
 import 'package:bu_edmrs/common/widgets/home_appbar.dart';
+import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +15,13 @@ class DataTableExample extends StatelessWidget {
         child: Column(
           children: [
             HeaderContainer(
+              height: 200,
               child: Column(
                 children: [
-                  HomeAppBar(showBackArrow: true),
+                  const TAppBar(
+                    showBackArrow: true,
+                    padding: EdgeInsets.symmetric(horizontal: ConstSizes.sm),
+                  ),
                   SizedBox(
                     width: 40,
                     height: 30,

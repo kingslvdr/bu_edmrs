@@ -29,7 +29,7 @@ class LoginController extends GetxController {
         String credentials = '$user:$userpass';
         String encodedCredentials = base64Encode(utf8.encode(credentials));
         Map<String, String> headers = {
-          'Authorization': 'Basic $encodedCredentials'
+          'authorization': 'Basic $encodedCredentials'
         };
 
         var response = await http.post(
@@ -47,12 +47,15 @@ class LoginController extends GetxController {
             localStorage.write('fullname', data[0]['EMPL_NAME']);
             localStorage.write('position', data[0]['POSITION']);
             localStorage.write('department', data[0]['DEPARTMENT']);
+            localStorage.write('isLoggedIn', true);
+
             PopUps.successToast(
                 title: 'Success', message: result['message'], context: context);
 
             Future.delayed(
               const Duration(seconds: 3),
-              () => Get.offAll(() => const Home()),
+              () { username.clear(); password.clear(); Get.offAll(() => const Home());},
+              
             );
           } else {
             // throw resultDecode(response.body)['message'];

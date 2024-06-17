@@ -5,6 +5,7 @@ import 'package:bu_edmrs/utils/constants/image_strings.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:bu_edmrs/utils/constants/text_strings.dart';
 import 'package:bu_edmrs/utils/helpers/helper_functions.dart';
+import 'package:bu_edmrs/utils/popups/popups.dart';
 import 'package:bu_edmrs/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -89,7 +90,9 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              PopUps.showForgotPass(context: context, icon:  'success', message: 'Please Contact IT');
+                            },
                             child: const Text(TTexts.forgetPassword),
                           ),
                         ],

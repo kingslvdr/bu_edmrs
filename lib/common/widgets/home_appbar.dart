@@ -1,6 +1,8 @@
+import 'package:bu_edmrs/API/logout_api.dart';
 import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/cart_menu_icon.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
+import 'package:bu_edmrs/utils/popups/popups.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -8,14 +10,14 @@ import '../../utils/constants/colors.dart';
 
 class HomeAppBar extends StatelessWidget {
   HomeAppBar({
-    super.key, required this.showBackArrow,
+    super.key,
   });
   final localStorage = GetStorage();
-  final bool showBackArrow;
   @override
   Widget build(BuildContext context) {
     return TAppBar(
-      showBackArrow: showBackArrow,
+      padding: const EdgeInsets.symmetric(horizontal: ConstSizes.md),
+      showBackArrow: false,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -62,7 +64,9 @@ class HomeAppBar extends StatelessWidget {
       ),
       actions: [
         CounterIcon(
-          onPressed: () {},
+          onPressed: () {
+            PopUps.showLogout(context);
+          },
           iconColor: ConstColors.white,
         ),
       ],

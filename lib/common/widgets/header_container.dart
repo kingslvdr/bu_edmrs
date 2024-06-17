@@ -7,18 +7,19 @@ import 'package:flutter/material.dart';
 class HeaderContainer extends StatelessWidget {
   const HeaderContainer({
     super.key,
-    required this.child,
+    required this.child, required this.height,
   });
 
   final Widget child;
+  final double height;
   @override
   Widget build(BuildContext context) {
     return CustomCurveWidget(
       child: Container(
-        color: ConstColors.primary,
+        color: Colors.deepPurple[900],
         padding: const EdgeInsets.all(0),
         child: SizedBox(
-          height: 190,
+          height: height,
           child: Stack(
             children: [
               Positioned(

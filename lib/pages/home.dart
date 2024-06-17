@@ -2,16 +2,13 @@
 
 import 'package:bu_edmrs/common/widgets/header_container.dart';
 import 'package:bu_edmrs/common/widgets/home_appbar.dart';
+import 'package:bu_edmrs/pages/inbox_request.dart';
 import 'package:bu_edmrs/pages/tablePage.dart';
-import 'package:bu_edmrs/utils/constants/image_strings.dart';
 import 'package:bu_edmrs/utils/constants/menu_const.dart';
-import 'package:bu_edmrs/utils/constants/size.dart';
-import 'package:bu_edmrs/utils/device/device_utility.dart';
+import 'package:bu_edmrs/utils/constants/text_strings.dart';
 import 'package:bu_edmrs/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
 class Home extends StatelessWidget {
@@ -26,12 +23,14 @@ class Home extends StatelessWidget {
         child: Column(
           children: [
             HeaderContainer(
+              height: 200,
               child: Column(
                 children: [
-                  HomeAppBar(showBackArrow: false,),
+                  HomeAppBar(),
                   const Center(
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -41,27 +40,54 @@ class Home extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.all(10.0),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text('Personal'),
-                                    Text('80,000.00')
+                                    Text(
+                                      'Personal',
+                                    ),
+                                    Text(
+                                      '80,000.00',
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(
-                              width: 20), // Add some space between the cards
+                          SizedBox(width: 20), // Add some space between the cards
                           Expanded(
                             child: Card(
                               elevation: 5,
                               child: Padding(
                                 padding: EdgeInsets.all(10.0),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text('Personal'),
-                                    Text('100,000.00')
+                                    Text(
+                                      'Accident',
+                                    ),
+                                    Text(
+                                      '100,000.00',
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 20), // Add some space between the cards
+                          Expanded(
+                            child: Card(
+                              elevation: 5,
+                              child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Dependent',
+                                    ),
+                                    Text(
+                                      '50,000.00',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -74,7 +100,6 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-
             // gridMenu
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -96,8 +121,10 @@ class Home extends StatelessWidget {
                             splashColor: Colors.blue.withOpacity(0.5),
                             highlightColor: Colors.blue.withOpacity(0.5),
                             onTap: () {
-                              if (index == 1) {
-                                Get.to(()=> DataTableExample());
+                              if (index == 0) {
+                                Get.to(() => const InboxRequest());
+                              } else if (index == 1) {
+                                Get.to(() => DataTableExample());
                                 // alert(
                                 //   "IMPORTANT NOTICE",
                                 //   "This accredited hospital request form is specifically designed for employees who have availed the hospitalization benefit at our affiliated hospitals. Please do not use this form for your Medical Expense Reimbursement.",
@@ -111,12 +138,8 @@ class Home extends StatelessWidget {
                                 // );
                               } else if (index == 2) {
                                 alert(
-                                  "Welfare Claim Procedure:",
-                                  """1. Fill-up welfare claim form and attach supporting documents
-2. Submit documents to HR Dept. for checking
-3. Retrieve documents from HR Dept. and have it approved by supervisor.
-4. Park document at SAP system for payment
-5. Submit approved park document to Accounting Department.""",
+                                  TTexts.reimburseTitle,
+                                  TTexts.reimburseBody,
                                   context,
                                   onConfirm: () {
                                     Navigator.of(context, rootNavigator: true)
@@ -126,7 +149,7 @@ class Home extends StatelessWidget {
                                   },
                                 );
                               }
-                              if (index == 3) {
+                              else {
                                 print("New Card tapped!");
                               }
                             },
