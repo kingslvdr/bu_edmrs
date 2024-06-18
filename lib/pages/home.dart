@@ -2,6 +2,7 @@
 
 import 'package:bu_edmrs/common/widgets/header_container.dart';
 import 'package:bu_edmrs/common/widgets/home_appbar.dart';
+import 'package:bu_edmrs/pages/balance.dart';
 import 'package:bu_edmrs/pages/inbox_request.dart';
 import 'package:bu_edmrs/pages/tablePage.dart';
 import 'package:bu_edmrs/utils/constants/menu_const.dart';
@@ -27,76 +28,7 @@ class Home extends StatelessWidget {
               child: Column(
                 children: [
                   HomeAppBar(),
-                  const Center(
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                            child: Card(
-                              elevation: 5,
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Personal',
-                                    ),
-                                    Text(
-                                      '80,000.00',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20), // Add some space between the cards
-                          Expanded(
-                            child: Card(
-                              elevation: 5,
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Accident',
-                                    ),
-                                    Text(
-                                      '100,000.00',
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20), // Add some space between the cards
-                          Expanded(
-                            child: Card(
-                              elevation: 5,
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Dependent',
-                                    ),
-                                    Text(
-                                      '50,000.00',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  Balances(),
                 ],
               ),
             ),
@@ -148,8 +80,7 @@ class Home extends StatelessWidget {
                                         context, '/Reimbursement');
                                   },
                                 );
-                              }
-                              else {
+                              } else {
                                 print("New Card tapped!");
                               }
                             },

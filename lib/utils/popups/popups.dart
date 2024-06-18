@@ -1,5 +1,5 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bu_edmrs/API/logout_api.dart';
 import 'package:bu_edmrs/utils/constants/colors.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
@@ -58,33 +58,22 @@ class PopUps {
   }
 
   static showLogout(context) async {
-    AwesomeDialog(
-      context: context,
-      animType: AnimType.bottomSlide,
-      dialogType: DialogType.question,
-      headerAnimationLoop: false,
-      dismissOnTouchOutside: false,
-      buttonsTextStyle: const TextStyle(fontSize: 18),
-      body: const Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Logout?', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),),
-            SizedBox(
-              height: 10,
-            ),
-            Text('Are you sure to logout?'),
-          ],
-        ),
-      ),
-      btnOkText: 'Yes',
-      btnCancelText: 'No',
-      btnCancelOnPress: () {},
-      btnOkOnPress: () {
-        userLogout();
-      },
-    ).show();
+    ArtDialogResponse response = await ArtSweetAlert.show(
+        barrierDismissible: false,
+        context: context,
+        artDialogArgs: ArtDialogArgs(
+            denyButtonText: "No",
+            title: "Are you sure?",
+            text: "Logout from the application",
+            confirmButtonText: "Yes",
+            type: ArtSweetAlertType.warning));
+
+    if (response == null) {
+      return;
+    }
+
+    if (response.isTapConfirmButton) {
+      userLogout();
+    }
   }
 }

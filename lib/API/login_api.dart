@@ -23,7 +23,8 @@ class LoginController extends GetxController {
       if (!loginFormKey.currentState!.validate()) {
         return;
       } else {
-        var url = Uri.parse(ApiEndpoints.baseUrl + ApiEndpoints.authEndPoints.login);
+        var url =
+            Uri.parse(ApiEndpoints.baseUrl + ApiEndpoints.authEndPoints.login);
         String user = username.text;
         String userpass = password.text;
         String credentials = '$user:$userpass';
@@ -48,14 +49,19 @@ class LoginController extends GetxController {
             localStorage.write('position', data[0]['POSITION']);
             localStorage.write('department', data[0]['DEPARTMENT']);
             localStorage.write('isLoggedIn', true);
+            localStorage.write('username', user);
+            localStorage.write('password', userpass);
 
             PopUps.successToast(
                 title: 'Success', message: result['message'], context: context);
 
             Future.delayed(
               const Duration(seconds: 3),
-              () { username.clear(); password.clear(); Get.offAll(() => const Home());},
-              
+              () {
+                username.clear();
+                password.clear();
+                Get.offAll(() => const Home());
+              },
             );
           } else {
             // throw resultDecode(response.body)['message'];
