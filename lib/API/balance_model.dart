@@ -37,8 +37,8 @@ class Balance {
   Balance({this.balCode, this.balName, this.balAmt});
 
   Balance.fromJson(Map<String, dynamic> json) {
-    balCode = json['bal_code'];
-    balName = json['bal_name'];
+    balCode = json['bal_code'].toString();
+    balName = json['bal_name'].toString();
     balAmt = json['bal_amt'];
   }
 

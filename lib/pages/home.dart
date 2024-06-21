@@ -54,7 +54,7 @@ class Home extends StatelessWidget {
                             highlightColor: Colors.blue.withOpacity(0.5),
                             onTap: () {
                               if (index == 0) {
-                                Get.to(() => const InboxRequest());
+                                Get.to(() => InboxRequest());
                               } else if (index == 1) {
                                 Get.to(() => DataTableExample());
                                 // alert(

@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:bu_edmrs/API/bindings.dart';
 import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/header_container.dart';
 import 'package:bu_edmrs/common/widgets/inbox_list.dart';
@@ -6,11 +9,12 @@ import 'package:bu_edmrs/utils/constants/colors.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:bu_edmrs/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class InboxRequest extends StatelessWidget {
-  const InboxRequest({super.key});
-
+  InboxRequest({super.key});
+  final DataService dataService = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,19 +51,22 @@ class InboxRequest extends StatelessWidget {
               ),
             ),
             SingleChildScrollView(
-              child: Column(
-                children: [
-                  Center(
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: DeviceUtils.getScreenHeight() / 1.2,
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: InboxList(),
+              child: RefreshIndicator(
+                onRefresh: () async => print('refreshed'),
+                child: Column(
+                  children: [
+                    Center(
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: DeviceUtils.getScreenHeight() / 1.2,
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: ItemListScreen(),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

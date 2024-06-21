@@ -9,8 +9,8 @@ import 'package:http/http.dart' as http;
 
 class BalanceController extends GetxController{
 
-  List<Balance> balance = [];
-
+  List<Balance> balance = <Balance>[].obs;
+  RxBool isLoading = true.obs;
   @override
   void onInit(){
     super.onInit();
@@ -27,9 +27,11 @@ class BalanceController extends GetxController{
         String credentials = '$user:$userpass';
         String encodedCredentials = base64Encode(utf8.encode(credentials));
         Map<String, String> headers = {
-          'authorization': 'Basic $encodedCredentials'
+          'Authorization': 'Basic $encodedCredentials'
         };
 
+        try{
+          isLoading(true);
         var response = await http.post(
           url,
           headers: headers,
@@ -44,6 +46,9 @@ class BalanceController extends GetxController{
         else{
           PopUps.errorSnackBar(title: 'Error', message: 'Error fetching Data');
         }
+      } finally{
+        isLoading(false);
+      }
 
   }
 }

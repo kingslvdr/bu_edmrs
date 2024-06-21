@@ -1,3 +1,4 @@
+import 'package:bu_edmrs/API/bindings.dart';
 import 'package:bu_edmrs/common/logged_in_check.dart';
 import 'package:bu_edmrs/pages/home.dart';
 import 'package:bu_edmrs/pages/login.dart';
@@ -17,9 +18,16 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      home: isLoggedIn() ? const Home() : const LoginScreen(),
+      home: isLoggedIn() ? Home() : const LoginScreen(),
+      initialBinding: InitialBindings(),
     );
   }
 }
 
 
+class InitialBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<DataService>(() => DataService());
+  }
+}

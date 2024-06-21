@@ -1,74 +1,44 @@
-import 'package:bu_edmrs/common/widgets/appbar.dart';
-import 'package:bu_edmrs/common/widgets/header_container.dart';
-import 'package:bu_edmrs/common/widgets/home_appbar.dart';
-import 'package:bu_edmrs/utils/constants/size.dart';
-import 'package:data_table_2/data_table_2.dart';
+import 'package:bu_edmrs/API/bindings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DataTableExample extends StatelessWidget {
   DataTableExample({super.key});
-
+  final DataService dataService = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            HeaderContainer(
-              height: 200,
-              child: Column(
-                children: [
-                  const TAppBar(
-                    showBackArrow: true,
-                    padding: EdgeInsets.symmetric(horizontal: ConstSizes.sm),
-                  ),
-                  SizedBox(
-                    width: 40,
-                    height: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: DataTable2(
-                        columnSpacing: 12,
-                        horizontalMargin: 12,
-                        minWidth: 600,
-                        columns: [
-                          DataColumn2(
-                            label: Text('Column A'),
-                            size: ColumnSize.L,
-                          ),
-                          DataColumn(
-                            label: Text('Column B'),
-                          ),
-                          DataColumn(
-                            label: Text('Column C'),
-                          ),
-                          DataColumn(
-                            label: Text('Column D'),
-                          ),
-                          DataColumn(
-                            label: Text('Column NUMBERS'),
-                            numeric: true,
-                          ),
-                        ],
-                        rows: List<DataRow>.generate(
-                          100,
-                          (index) => DataRow(
-                            cells: [
-                              DataCell(Text('A' * (10 - index % 10))),
-                              DataCell(Text('B' * (10 - (index + 5) % 10))),
-                              DataCell(Text('C' * (15 - (index + 5) % 10))),
-                              DataCell(Text('D' * (15 - (index + 10) % 10))),
-                              DataCell(Text(((index + 0.1) * 25.4).toString()))
-                            ],
-                          ),
-                        ),
-                      ),
+      appBar: AppBar(title: Text('Home Page')),
+      body: Center(
+        child: FutureBuilder<List<Map<String, dynamic>>?>(
+          future: dataService.fetchData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: Text('No items found'));
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final item = snapshot.data![index];
+                  return Card(
+                    elevation: 4,
+                    margin: EdgeInsets.all(8),
+                    child: ListTile(
+                      title: Text(item['name']),
+                      subtitle: Text(item['description']),
+                      onTap: () {
+                        // Handle onTap if needed
+                      },
                     ),
-                  )
-                ],
-              ),
-            ),
-          ],
+                  );
+                },
+              );
+            }
+          },
         ),
       ),
     );

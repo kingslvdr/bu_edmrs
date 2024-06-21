@@ -1,19 +1,28 @@
 import 'package:bu_edmrs/common/widgets/items.dart';
+import 'package:bu_edmrs/common/widgets/items_list.dart';
+import 'package:bu_edmrs/common/widgets/request_emp_dtl.dart';
+import 'package:bu_edmrs/utils/constants/colors.dart';
+import 'package:bu_edmrs/utils/constants/size.dart';
+import 'package:bu_edmrs/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ItemDetailsScreen extends StatelessWidget {
-  final Item item;
+  final Items item;
 
-  const ItemDetailsScreen({super.key, required this.item});
-
+  ItemDetailsScreen({super.key, required this.item});
+  final localStorage = GetStorage();
   @override
   Widget build(BuildContext context) {
+    // final controller = Get.put(TabbarController());
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(item.empName),
+        title: Text(item.empName.toString()),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -79,6 +88,16 @@ class ItemDetailsScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              RequestEmployeeDetails(item: item),
+            ],
+          ),
         ),
       ),
     );

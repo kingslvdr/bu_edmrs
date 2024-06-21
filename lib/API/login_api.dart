@@ -47,6 +47,7 @@ class LoginController extends GetxController {
             localStorage.write('greeting', result['greeting']);
             localStorage.write('fullname', data[0]['EMPL_NAME']);
             localStorage.write('position', data[0]['POSITION']);
+            localStorage.write('business', data[0]['BUSINESS_UNIT']);
             localStorage.write('department', data[0]['DEPARTMENT']);
             localStorage.write('isLoggedIn', true);
             localStorage.write('username', user);
@@ -60,7 +61,7 @@ class LoginController extends GetxController {
               () {
                 username.clear();
                 password.clear();
-                Get.offAll(() => const Home());
+                Get.to(() => Home());
               },
             );
           } else {
