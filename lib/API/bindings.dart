@@ -32,6 +32,21 @@ class DataService extends GetxService {
         "welfareBal": '₱100,000.00',
         "business": 'Agro-Industrial Business Group (Livestock)'
       },
+      {
+        "title": 'Item 1',
+        "status": 'For Approval',
+        "docNo": 'AD240001',
+        "type": 'Admission',
+        "empName": 'Harlan Ronquillo',
+        "reqDate": 'June 13, 2024',
+        "department": 'IT Department',
+        "position": 'IT Officer',
+        "hospital": 'Tarlac Medical Center',
+        "admissionDate": 'June 15, 2024',
+        "symptoms": 'Cold, Fever, Shortness of breath',
+        "welfareBal": '₱100,000.00',
+        "business": 'Agro-Industrial Business Group (Livestock)'
+      },
     ];
   }
 
