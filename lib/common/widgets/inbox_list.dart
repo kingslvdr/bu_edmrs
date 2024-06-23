@@ -3,24 +3,32 @@ import 'package:bu_edmrs/common/widgets/inbox_details.dart';
 import 'package:bu_edmrs/common/widgets/items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class ItemListScreen extends StatelessWidget {
   // final List<Items> items;
 
   ItemListScreen({super.key});
   final DataService dataService = Get.find();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<List<Map<String, dynamic>>?>(
-        future: dataService.fetchData(),
+        future: dataService.fetchApproval(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+              child: Lottie.asset('assets/images/animations/141397-loading-juggle.json'),
+            );
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No items found'));
+            return Center(
+              child: Lottie.asset('assets/images/animations/Animation-1718951538417.json'),
+            );
           } else {
             return Column(
               children: <Widget>[
@@ -34,9 +42,10 @@ class ItemListScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {
-                            Get.to(() {}
-                                // () => ItemDetailsScreen(item: item),
-                                );
+                            Get.to(
+                              () => ItemDetailsScreen(
+                                  item: snapshot.data![index]),
+                            );
                           },
                           child: Container(
                             height: 105,

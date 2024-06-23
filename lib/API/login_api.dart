@@ -61,7 +61,7 @@ class LoginController extends GetxController {
               () {
                 username.clear();
                 password.clear();
-                Get.to(() => Home());
+                Get.offAll(() => Home());
               },
             );
           } else {

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bu_edmrs/API/api_endpoints.dart';
+import 'package:bu_edmrs/API/inbox_model.dart';
 import 'package:bu_edmrs/utils/popups/popups.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,42 +13,54 @@ class DataService extends GetxService {
   final isLoading = true.obs;
 
   // Example method to fetch data from the database
-  Future<List<Map<String, dynamic>>?> fetchData() async {
+  Future<List<Map<String, dynamic>>?> fetchApproval() async {
     // Simulate fetching data from a database or API
-    await Future.delayed(Duration(seconds: 2));
     // return ['Data 1', 'Data 2', 'Data 3'];
-    return [
-      {
-        "title": 'Item 1',
-        "status": 'For Approval',
-        "docNo": 'AD240001',
-        "type": 'Admission',
-        "empName": 'Harlan Ronquillo',
-        "reqDate": 'June 13, 2024',
-        "department": 'IT Department',
-        "position": 'IT Officer',
-        "hospital": 'Tarlac Medical Center',
-        "admissionDate": 'June 15, 2024',
-        "symptoms": 'Cold, Fever, Shortness of breath',
-        "welfareBal": '₱100,000.00',
-        "business": 'Agro-Industrial Business Group (Livestock)'
-      },
-      {
-        "title": 'Item 1',
-        "status": 'For Approval',
-        "docNo": 'AD240001',
-        "type": 'Admission',
-        "empName": 'Harlan Ronquillo',
-        "reqDate": 'June 13, 2024',
-        "department": 'IT Department',
-        "position": 'IT Officer',
-        "hospital": 'Tarlac Medical Center',
-        "admissionDate": 'June 15, 2024',
-        "symptoms": 'Cold, Fever, Shortness of breath',
-        "welfareBal": '₱100,000.00',
-        "business": 'Agro-Industrial Business Group (Livestock)'
-      },
-    ];
+    // List<Inbox> inbox = <Inbox>[].obs;
+    RxList listMap = [].obs;
+    var url =
+        Uri.parse(ApiEndpoints.baseUrl + ApiEndpoints.authEndPoints.getInbox);
+    String user = storage.read('username');
+    String userpass = storage.read('password');
+    String credentials = '$user:$userpass';
+    String encodedCredentials = base64Encode(utf8.encode(credentials));
+    Map<String, String> headers = {
+      'authorization': 'Basic $encodedCredentials'
+    };
+    var response = await http.post(
+      url,
+      headers: headers,
+    );
+    var res = jsonDecode(response.body);
+
+    if (res['success']) {
+      List<dynamic> dataList = res['data'];
+      List<Map<String, dynamic>> listMap = dataList.map((item) => item as Map<String, dynamic>).toList();
+      // print(listMap);
+      return listMap;
+    }
+  }
+
+  Future<String?> getCount() async{
+    var url =
+        Uri.parse(ApiEndpoints.baseUrl + ApiEndpoints.authEndPoints.getInbox);
+    String user = storage.read('username');
+    String userpass = storage.read('password');
+    String credentials = '$user:$userpass';
+    String encodedCredentials = base64Encode(utf8.encode(credentials));
+    Map<String, String> headers = {
+      'authorization': 'Basic $encodedCredentials'
+    };
+    var response = await http.post(
+      url,
+      headers: headers,
+    );
+    var res = jsonDecode(response.body);
+    print(res);
+    if (res['success']) {
+      // print(listMap);
+      return res['count'].toString();
+    }
   }
 
   Future<Map<String, dynamic>> fetchBalance() async {

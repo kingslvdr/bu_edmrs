@@ -8,4 +8,5 @@ class ApiEndpoints{
 class AuthEndPoints{
   final String login = 'login';
   final String balance = 'getBalance';
+  final String getInbox = 'getApproval';
 }

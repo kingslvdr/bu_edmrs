@@ -10,8 +10,8 @@ class DataTableExample extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Home Page')),
       body: Center(
-        child: FutureBuilder<List<Map<String, dynamic>>?>(
-          future: dataService.fetchData(),
+        child: FutureBuilder(
+          future: dataService.fetchApproval(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
@@ -26,7 +26,7 @@ class DataTableExample extends StatelessWidget {
                   final item = snapshot.data![index];
                   return Card(
                     elevation: 4,
-                    margin: EdgeInsets.all(8),
+                    margin: const EdgeInsets.all(8),
                     child: ListTile(
                       title: Text(item['name']),
                       subtitle: Text(item['description']),

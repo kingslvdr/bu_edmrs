@@ -34,7 +34,7 @@ class Balances extends StatelessWidget {
                                     bal.balName!,
                                   ),
                                   Text(
-                                    bal.balAmt!,
+                                    'P ${bal.balAmt!}',
                                   ),
                                 ],
                               ),

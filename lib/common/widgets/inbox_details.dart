@@ -9,7 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ItemDetailsScreen extends StatelessWidget {
-  final Items item;
+  final Map<String, dynamic> item;
 
   ItemDetailsScreen({super.key, required this.item});
   final localStorage = GetStorage();
@@ -19,7 +19,7 @@ class ItemDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(item.empName.toString()),
+        title: Text(item['empName']),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -90,16 +90,17 @@ class ItemDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(right: 16.0, left: 16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              RequestEmployeeDetails(item: item),
-            ],
-          ),
-        ),
-      ),
+      body: const Placeholder()
+      // Padding(
+      //   padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+      //   child: SingleChildScrollView(
+      //     child: Column(
+      //       children: [
+      //         RequestEmployeeDetails(item: item),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

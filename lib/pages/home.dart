@@ -1,5 +1,6 @@
 // import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:bu_edmrs/API/bindings.dart';
 import 'package:bu_edmrs/common/widgets/header_container.dart';
 import 'package:bu_edmrs/common/widgets/home_appbar.dart';
 import 'package:bu_edmrs/pages/balance.dart';
@@ -10,11 +11,12 @@ import 'package:bu_edmrs/utils/constants/text_strings.dart';
 import 'package:bu_edmrs/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
+  Home({super.key});
+  final DataService dataService = Get.find();
   @override
   Widget build(BuildContext context) {
     final bool isDarkMode = THelperFunctions.isDarkMode(context);
@@ -146,14 +148,40 @@ class Home extends StatelessWidget {
                                                 BorderRadius.circular(100),
                                           ),
                                           child: Center(
-                                            child: Text(
-                                              '5',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .labelLarge!
-                                                  .apply(
-                                                      color: Colors.white,
-                                                      fontSizeFactor: 0.8),
+                                            child: FutureBuilder(
+                                              future: dataService.getCount(),
+                                              builder: (context, snapshot) {
+                                                print(snapshot);
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.waiting) {
+                                                  return Center(
+                                                    child: Lottie.asset(
+                                                        'assets/images/animations/141397-loading-juggle.json'),
+                                                  );
+                                                } else if (snapshot.hasError) {
+                                                  return Center(
+                                                    child: Text(
+                                                        'Error: ${snapshot.error}'),
+                                                  );
+                                                } else if (!snapshot.hasData ||
+                                                    snapshot.data!.isEmpty) {
+                                                  return Center(
+                                                    child: Lottie.asset(
+                                                        'assets/images/animations/Animation-1718951538417.json'),
+                                                  );
+                                                } else {
+                                                  return Text(
+                                                    snapshot.data!.toString(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .labelLarge!
+                                                        .apply(
+                                                            color: Colors.white,
+                                                            fontSizeFactor:
+                                                                0.8),
+                                                  );
+                                                }
+                                              },
                                             ),
                                           ),
                                         ),
