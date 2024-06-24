@@ -35,13 +35,14 @@ class DataService extends GetxService {
 
     if (res['success']) {
       List<dynamic> dataList = res['data'];
-      List<Map<String, dynamic>> listMap = dataList.map((item) => item as Map<String, dynamic>).toList();
+      List<Map<String, dynamic>> listMap =
+          dataList.map((item) => item as Map<String, dynamic>).toList();
       // print(listMap);
       return listMap;
     }
   }
 
-  Future<String?> getCount() async{
+  Future<String?> getCount() async {
     var url =
         Uri.parse(ApiEndpoints.baseUrl + ApiEndpoints.authEndPoints.getInbox);
     String user = storage.read('username');
@@ -91,6 +92,36 @@ class DataService extends GetxService {
       }
     } finally {
       isLoading(false);
+    }
+  }
+
+  Future<List<Map<String, dynamic>>?> requestDetails({required docNo}) async {
+    var url = Uri.parse(
+        ApiEndpoints.baseUrl + ApiEndpoints.authEndPoints.requestData);
+    String user = storage.read('username');
+    String userpass = storage.read('password');
+    String credentials = '$user:$userpass';
+    String encodedCredentials = base64Encode(utf8.encode(credentials));
+    Map<String, String> headers = {
+      'authorization': 'Basic $encodedCredentials'
+    };
+    Map<String, String> body = {
+      'docNo': '$docNo'
+    };
+    
+    var response = await http.post(
+      url,
+      headers: headers,
+      body: body
+    );
+    var res = jsonDecode(response.body);
+
+    if (res['success']) {
+      List<dynamic> dataList = res['data'];
+      List<Map<String, dynamic>> listMap =
+          dataList.map((item) => item as Map<String, dynamic>).toList();
+      // print(listMap);
+      return listMap;
     }
   }
 }

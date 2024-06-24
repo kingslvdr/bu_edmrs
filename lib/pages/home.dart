@@ -58,7 +58,7 @@ class Home extends StatelessWidget {
                               if (index == 0) {
                                 Get.to(() => InboxRequest());
                               } else if (index == 1) {
-                                Get.to(() => DataTableExample());
+                                // Get.to(() => DataTableExample());
                                 // alert(
                                 //   "IMPORTANT NOTICE",
                                 //   "This accredited hospital request form is specifically designed for employees who have availed the hospitalization benefit at our affiliated hospitals. Please do not use this form for your Medical Expense Reimbursement.",
