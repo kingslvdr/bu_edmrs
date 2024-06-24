@@ -328,6 +328,36 @@ class ReqDtls extends StatelessWidget {
             title: const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Icon(Iconsax.user, color: Colors.blue),
+                SizedBox(
+                  width: ConstSizes.sm,
+                ),
+                TitleText(
+                  title: 'Employee',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue),
+                ),
+              ],
+            ),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(left: 35, top: 10),
+              child: Text(items['empName']),
+            ),
+            // onTap: () {
+            //   // Handle item tap
+            //   print('Tapped on ${items['bu']}');
+            // },
+          ),
+          const Divider(
+            color: ConstColors.grey,
+            height: 1,
+          ),
+          ListTile(
+            title: const Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
                 Icon(Iconsax.building, color: Colors.blue),
                 SizedBox(
                   width: ConstSizes.sm,

@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:bu_edmrs/API/bindings.dart';
 import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/header_container.dart';
+import 'package:bu_edmrs/common/widgets/inbox_controller.dart';
+import 'package:bu_edmrs/common/widgets/inbox_details.dart';
 import 'package:bu_edmrs/common/widgets/inbox_list.dart';
 import 'package:bu_edmrs/common/widgets/items_list.dart';
 import 'package:bu_edmrs/utils/constants/colors.dart';
@@ -13,8 +15,8 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class InboxRequest extends StatelessWidget {
-  InboxRequest({super.key});
-  final DataService dataService = Get.find();
+ const InboxRequest({super.key});
+  // final DataService dataService = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,8 @@ class InboxRequest extends StatelessWidget {
               child: Column(
                 children: [
                   TAppBar(
-                    padding: const EdgeInsets.symmetric(horizontal: ConstSizes.sm),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: ConstSizes.sm),
                     showBackArrow: true,
                     // leadingIcon: Iconsax.direct_left,
                     title: Row(
@@ -51,27 +54,52 @@ class InboxRequest extends StatelessWidget {
               ),
             ),
             SingleChildScrollView(
-              child: RefreshIndicator(
-                onRefresh: () async => print('refreshed'),
-                child: Column(
-                  children: [
-                    Center(
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: DeviceUtils.getScreenHeight() / 1.2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ItemListScreen(),
-                        ),
-                      ),
-                    ),
-                  ],
+              child: SizedBox(
+                height: DeviceUtils.getScreenHeight() / 1.2,
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ItemListScreen(),
                 ),
               ),
             ),
+            // SingleChildScrollView(
+            //   child: RefreshIndicator(
+            //     onRefresh: () async => print('refreshed'),
+            //     child: Column(
+            //       children: [
+            //         Center(
+            //           child: SizedBox(
+            //             width: double.infinity,
+            //             height: DeviceUtils.getScreenHeight() / 1.2,
+            //             child: Padding(
+            //               padding: const EdgeInsets.all(8.0),
+            //               child: ItemListScreen(),
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
     );
+  }
+    Color? _getStatusColor(String status) {
+    Color? color;
+    switch (status.toLowerCase()) {
+      case 'completed':
+        color = Colors.green;
+        break;
+      case 'in progress':
+        color = Colors.blue;
+        break;
+      case 'pending':
+      default:
+        color = Colors.amber[700];
+    }
+    return color;
   }
 }
