@@ -1,17 +1,10 @@
-import 'dart:math';
-
-import 'package:bu_edmrs/API/bindings.dart';
 import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/header_container.dart';
-import 'package:bu_edmrs/common/widgets/inbox_controller.dart';
-import 'package:bu_edmrs/common/widgets/inbox_details.dart';
 import 'package:bu_edmrs/common/widgets/inbox_list.dart';
-import 'package:bu_edmrs/common/widgets/items_list.dart';
 import 'package:bu_edmrs/utils/constants/colors.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:bu_edmrs/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class InboxRequest extends StatelessWidget {
@@ -86,20 +79,5 @@ class InboxRequest extends StatelessWidget {
         ),
       ),
     );
-  }
-    Color? _getStatusColor(String status) {
-    Color? color;
-    switch (status.toLowerCase()) {
-      case 'completed':
-        color = Colors.green;
-        break;
-      case 'in progress':
-        color = Colors.blue;
-        break;
-      case 'pending':
-      default:
-        color = Colors.amber[700];
-    }
-    return color;
   }
 }

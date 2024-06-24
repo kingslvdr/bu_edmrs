@@ -5,7 +5,6 @@ import 'package:bu_edmrs/common/widgets/header_container.dart';
 import 'package:bu_edmrs/common/widgets/home_appbar.dart';
 import 'package:bu_edmrs/pages/balance.dart';
 import 'package:bu_edmrs/pages/inbox_request.dart';
-import 'package:bu_edmrs/pages/tablePage.dart';
 import 'package:bu_edmrs/utils/constants/menu_const.dart';
 import 'package:bu_edmrs/utils/constants/text_strings.dart';
 import 'package:bu_edmrs/utils/helpers/helper_functions.dart';
@@ -56,7 +55,7 @@ class Home extends StatelessWidget {
                             highlightColor: Colors.blue.withOpacity(0.5),
                             onTap: () {
                               if (index == 0) {
-                                Get.to(() => InboxRequest());
+                                Get.to(() => const InboxRequest());
                               } else if (index == 1) {
                                 // Get.to(() => DataTableExample());
                                 // alert(

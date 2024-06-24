@@ -1,6 +1,5 @@
 import 'package:bu_edmrs/API/login_api.dart';
 import 'package:bu_edmrs/common/styles/spacing_styles.dart';
-import 'package:bu_edmrs/utils/constants/colors.dart';
 import 'package:bu_edmrs/utils/constants/image_strings.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:bu_edmrs/utils/constants/text_strings.dart';

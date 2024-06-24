@@ -1,11 +1,7 @@
 import 'dart:convert';
 
 import 'package:bu_edmrs/API/api_endpoints.dart';
-import 'package:bu_edmrs/API/inbox_model.dart';
-import 'package:bu_edmrs/utils/popups/popups.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -64,6 +60,9 @@ class DataService extends GetxService {
       // print(listMap);
       return res['count'].toString();
     }
+    else{
+      return '0';
+    }
   }
 
   Future<Map<String, dynamic>> fetchBalance() async {
@@ -118,6 +117,9 @@ class DataService extends GetxService {
           dataList.map((item) => item as Map<String, dynamic>).toList();
       // print(listMap);
       return listMap;
+    }
+    else{
+      return [];
     }
   }
 }

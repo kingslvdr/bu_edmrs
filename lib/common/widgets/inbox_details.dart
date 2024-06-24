@@ -1,12 +1,10 @@
 import 'package:bu_edmrs/API/bindings.dart';
 import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/header_container.dart';
-import 'package:bu_edmrs/common/widgets/items.dart';
-import 'package:bu_edmrs/common/widgets/items_list.dart';
-import 'package:bu_edmrs/common/widgets/request_emp_dtl.dart';
 import 'package:bu_edmrs/utils/constants/colors.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:bu_edmrs/utils/device/device_utility.dart';
+import 'package:bu_edmrs/utils/popups/popups.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -43,6 +41,7 @@ class ItemDetailsScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     // saveData("save", context);
+                    PopUps.showReject(context);
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -74,6 +73,7 @@ class ItemDetailsScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     // saveData("save", context);
+                    PopUps.showApprove(context);
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -358,7 +358,7 @@ class ReqDtls extends StatelessWidget {
             title: const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Iconsax.building, color: Colors.blue),
+                Icon(Iconsax.buildings, color: Colors.blue),
                 SizedBox(
                   width: ConstSizes.sm,
                 ),

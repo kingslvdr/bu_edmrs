@@ -1,4 +1,3 @@
-import 'package:bu_edmrs/API/logout_api.dart';
 import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/cart_menu_icon.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';

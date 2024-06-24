@@ -1,10 +1,7 @@
 import 'package:bu_edmrs/common/widgets/items.dart';
 import 'package:bu_edmrs/utils/constants/colors.dart';
-import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:bu_edmrs/utils/device/device_utility.dart';
-import 'package:bu_edmrs/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
 
 class RequestEmployeeDetails extends StatelessWidget {

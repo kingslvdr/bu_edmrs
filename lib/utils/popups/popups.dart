@@ -5,7 +5,6 @@ import 'package:bu_edmrs/utils/constants/colors.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:toastification/toastification.dart';
 
 class PopUps {
@@ -55,6 +54,45 @@ class PopUps {
         // text: "Show a success message with an icon"
       ),
     );
+  }
+
+  static showReject(context) async {
+    ArtDialogResponse response = await ArtSweetAlert.show(
+        barrierDismissible: false,
+        context: context,
+        artDialogArgs: ArtDialogArgs(
+            denyButtonText: "No",
+            title: "Are you sure?",
+            text: "Logout from the application",
+            confirmButtonText: "Yes",
+            type: ArtSweetAlertType.warning));
+
+    if (response == null) {
+      return;
+    }
+
+    if (response.isTapConfirmButton) {
+      userLogout();
+    }
+  }
+  static showApprove(context) async {
+    ArtDialogResponse response = await ArtSweetAlert.show(
+        barrierDismissible: false,
+        context: context,
+        artDialogArgs: ArtDialogArgs(
+            denyButtonText: "No",
+            title: "Are you sure?",
+            text: "Logout from the application",
+            confirmButtonText: "Yes",
+            type: ArtSweetAlertType.warning));
+
+    if (response == null) {
+      return;
+    }
+
+    if (response.isTapConfirmButton) {
+      userLogout();
+    }
   }
 
   static showLogout(context) async {

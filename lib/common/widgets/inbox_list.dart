@@ -1,7 +1,5 @@
-import 'package:bu_edmrs/API/bindings.dart';
 import 'package:bu_edmrs/common/widgets/inbox_controller.dart';
 import 'package:bu_edmrs/common/widgets/inbox_details.dart';
-import 'package:bu_edmrs/common/widgets/items.dart';
 import 'package:bu_edmrs/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

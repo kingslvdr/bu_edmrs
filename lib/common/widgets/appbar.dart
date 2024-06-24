@@ -1,4 +1,4 @@
-import 'package:bu_edmrs/utils/constants/size.dart';
+
 import 'package:bu_edmrs/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
