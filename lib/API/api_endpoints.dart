@@ -10,4 +10,6 @@ class AuthEndPoints{
   final String balance = 'getBalance';
   final String getInbox = 'getApproval';
   final String requestData = 'getReqDetails';
+  final String approve = 'approveRequest';
+  final String reject = 'rejectRequest';
 }

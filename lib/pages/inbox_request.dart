@@ -1,14 +1,17 @@
 import 'package:bu_edmrs/common/widgets/appbar.dart';
 import 'package:bu_edmrs/common/widgets/header_container.dart';
+import 'package:bu_edmrs/common/widgets/inbox_controller.dart';
 import 'package:bu_edmrs/common/widgets/inbox_list.dart';
 import 'package:bu_edmrs/utils/constants/colors.dart';
 import 'package:bu_edmrs/utils/constants/size.dart';
 import 'package:bu_edmrs/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class InboxRequest extends StatelessWidget {
- const InboxRequest({super.key});
+InboxRequest({super.key});
+ final InboxController inboxController = Get.put(InboxController());
   // final DataService dataService = Get.find();
   @override
   Widget build(BuildContext context) {

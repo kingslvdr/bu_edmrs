@@ -14,6 +14,20 @@ class TValidator {
 
     return null;
   }
+  static String? validateReason(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please state reason';
+    }
+
+    // Regular expression for email validation
+    // final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
+    // if (!emailRegExp.hasMatch(value)) {
+    //   return 'Invalid email address.';
+    // }
+
+    return null;
+  }
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {

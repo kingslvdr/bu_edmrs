@@ -26,68 +26,62 @@ class ItemDetailsScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
-              child: Container(
-                width: MediaQuery.of(context).size.width *
-                    0.25, // Adjust the width as needed
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll<Color>(Colors.red),
-                    foregroundColor:
-                        WidgetStatePropertyAll<Color>(Colors.white),
+              child: ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll<Color>(Colors.red),
+                  foregroundColor: WidgetStatePropertyAll<Color>(Colors.white),
+                  side: WidgetStatePropertyAll(
+                    BorderSide(color: Colors.red),
                   ),
-                  onPressed: () {
-                    // saveData("save", context);
-                    PopUps.showReject(context);
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(3.0),
-                        child: Icon(Icons.thumb_down),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('Reject'),
-                      ),
-                    ],
-                  ),
+                ),
+                onPressed: () {
+                  // Add your onPressed logic here
+                  PopUps.showReject(context: context, docNo: item['docNo']);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Icon(Icons.thumb_down),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text('Reject'),
+                    ),
+                  ],
                 ),
               ),
             ),
+            const SizedBox(width: 16), // Optional space between buttons
             Expanded(
-              child: Container(
-                width: MediaQuery.of(context).size.width *
-                    0.25, // Adjust the width as needed
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        WidgetStatePropertyAll<Color>(Colors.green),
-                    foregroundColor:
-                        WidgetStatePropertyAll<Color>(Colors.white),
+              child: ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll<Color>(Colors.green),
+                  foregroundColor: WidgetStatePropertyAll<Color>(Colors.white),
+                  side: WidgetStatePropertyAll(
+                    BorderSide(color: Colors.green),
                   ),
-                  onPressed: () {
-                    // saveData("save", context);
-                    PopUps.showApprove(context);
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(3.0),
-                        child: Icon(Icons.thumb_up),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('Approve'),
-                      ),
-                    ],
-                  ),
+                ),
+                onPressed: () {
+                  // Add your onPressed logic here
+                  PopUps.showApprove(context: context, docNo: item['docNo']);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Icon(Icons.thumb_up),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text('Approve'),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -137,10 +131,12 @@ class ItemDetailsScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: FutureBuilder<List<dynamic>?>(
-                          future: dataService.requestDetails(docNo: item['docNo']),
+                          future:
+                              dataService.requestDetails(docNo: item['docNo']),
                           builder: (context, snapshot) {
-                            print(snapshot.data);
-                            if (snapshot.connectionState == ConnectionState.waiting) {
+                            // print(snapshot.data);
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
                               return Center(
                                 child: Lottie.asset(
                                     'assets/images/animations/141397-loading-juggle.json'),
@@ -156,13 +152,13 @@ class ItemDetailsScreen extends StatelessWidget {
                               );
                             } else {
                               return Padding(
-                                padding: EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: ListView.builder(
                                   padding: EdgeInsets.zero,
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (context, index) {
                                     final item = snapshot.data![index];
-                                    print(item);
+                                    // print(item);
                                     return Column(
                                       children: [
                                         ReqDtls(items: item),
@@ -184,132 +180,6 @@ class ItemDetailsScreen extends StatelessWidget {
         ),
       ),
     );
-
-    // Scaffold(
-    //   appBar: AppBar(
-    //     title: Text(item['empName']),
-    //   ),
-    //   bottomNavigationBar: Padding(
-    //     padding: const EdgeInsets.all(8.0),
-    //     child: Row(
-    //       mainAxisAlignment: MainAxisAlignment.end,
-    //       children: [
-    //         Expanded(
-    //           child: Container(
-    //             width: MediaQuery.of(context).size.width *
-    //                 0.25, // Adjust the width as needed
-    //             padding: const EdgeInsets.all(8.0),
-    //             child: ElevatedButton(
-    //               style: const ButtonStyle(
-    //                 backgroundColor: WidgetStatePropertyAll<Color>(Colors.red),
-    //                 foregroundColor:
-    //                     WidgetStatePropertyAll<Color>(Colors.white),
-    //               ),
-    //               onPressed: () {
-    //                 // saveData("save", context);
-    //               },
-    //               child: const Row(
-    //                 mainAxisAlignment: MainAxisAlignment.center,
-    //                 children: [
-    //                   Padding(
-    //                     padding: EdgeInsets.all(3.0),
-    //                     child: Icon(Icons.thumb_down),
-    //                   ),
-    //                   Padding(
-    //                     padding: EdgeInsets.all(8.0),
-    //                     child: Text('Reject'),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //         Expanded(
-    //           child: Container(
-    //             width: MediaQuery.of(context).size.width *
-    //                 0.25, // Adjust the width as needed
-    //             padding: const EdgeInsets.all(8.0),
-    //             child: ElevatedButton(
-    //               style: const ButtonStyle(
-    //                 backgroundColor:
-    //                     WidgetStatePropertyAll<Color>(Colors.green),
-    //                 foregroundColor:
-    //                     WidgetStatePropertyAll<Color>(Colors.white),
-    //               ),
-    //               onPressed: () {
-    //                 // saveData("save", context);
-    //               },
-    //               child: const Row(
-    //                 mainAxisAlignment: MainAxisAlignment.center,
-    //                 children: [
-    //                   Padding(
-    //                     padding: EdgeInsets.all(3.0),
-    //                     child: Icon(Icons.thumb_up),
-    //                   ),
-    //                   Padding(
-    //                     padding: EdgeInsets.all(8.0),
-    //                     child: Text('Approve'),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    //   body: Padding(
-    //     padding: const EdgeInsets.all(2.0),
-    //     child: FutureBuilder<List<dynamic>?>(
-    //       future: dataService.requestDetails(docNo: item['docNo']),
-    //       builder: (context, snapshot) {
-    //         print(snapshot.data);
-    //         if (snapshot.connectionState == ConnectionState.waiting) {
-    //           return Center(
-    //             child: Lottie.asset(
-    //                 'assets/images/animations/141397-loading-juggle.json'),
-    //           );
-    //         } else if (snapshot.hasError) {
-    //           return Center(
-    //             child: Text('Error: ${snapshot.error}'),
-    //           );
-    //         } else if (!snapshot.hasData) {
-    //           return Center(
-    //             child: Lottie.asset(
-    //                 'assets/images/animations/Animation-1718951538417.json'),
-    //           );
-    //         } else {
-    //           return Padding(
-    //             padding: EdgeInsets.all(10.0),
-    //             child: ListView.builder(
-    //               padding: EdgeInsets.zero,
-    //               itemCount: snapshot.data!.length,
-    //               itemBuilder: (context, index) {
-    //                 final item = snapshot.data![index];
-    //                 print(item);
-    //                 return Column(
-    //                   children: [
-    //                     ReqDtls(items: item),
-    //                   ],
-    //                 );
-    //               },
-    //             ),
-    //           );
-    //         }
-    //       },
-    //     ),
-    //   ),
-    //   // Padding(
-    //   //   padding: const EdgeInsets.only(right: 16.0, left: 16.0),
-    //   //   child: SingleChildScrollView(
-    //   //     child: Column(
-    //   //       children: [
-    //   //         RequestEmployeeDetails(item: item),
-    //   //       ],
-    //   //     ),
-    //   //   ),
-    //   // ),
-    // );
   }
 }
 
@@ -343,7 +213,10 @@ class ReqDtls extends StatelessWidget {
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(left: 35, top: 10),
-              child: Text(items['empName']),
+              child: Text(
+                items['empName'],
+                style: const TextStyle(fontSize: 17),
+              ),
             ),
             // onTap: () {
             //   // Handle item tap
@@ -373,7 +246,10 @@ class ReqDtls extends StatelessWidget {
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(left: 35, top: 10),
-              child: Text(items['bu']),
+              child: Text(
+                items['bu'],
+                style: const TextStyle(fontSize: 17),
+              ),
             ),
             // onTap: () {
             //   // Handle item tap
@@ -403,7 +279,10 @@ class ReqDtls extends StatelessWidget {
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(left: 35, top: 10),
-              child: Text(items['deptName']),
+              child: Text(
+                items['deptName'],
+                style: const TextStyle(fontSize: 17),
+              ),
             ),
             // onTap: () {
             //   // Handle item tap
@@ -433,7 +312,10 @@ class ReqDtls extends StatelessWidget {
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(left: 35, top: 10),
-              child: Text(items['position']),
+              child: Text(
+                items['position'],
+                style: const TextStyle(fontSize: 17),
+              ),
             ),
             // onTap: () {
             //   // Handle item tap
@@ -466,7 +348,10 @@ class ReqDtls extends StatelessWidget {
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(left: 35, top: 10),
-              child: Text(items['hospital']),
+              child: Text(
+                items['hospital'],
+                style: const TextStyle(fontSize: 17),
+              ),
             ),
 
             // onTap: () {
@@ -500,7 +385,10 @@ class ReqDtls extends StatelessWidget {
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(left: 35, top: 10),
-              child: Text(items['symptoms']),
+              child: Text(
+                items['symptoms'],
+                style: const TextStyle(fontSize: 17),
+              ),
             ),
             // onTap: () {
             //   // Handle item tap

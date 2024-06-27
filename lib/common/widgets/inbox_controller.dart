@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
+
 class InboxController extends GetxController {
   final storage = GetStorage();
   static InboxController get instance => Get.find();
@@ -13,15 +14,15 @@ class InboxController extends GetxController {
   RxBool isLoading = true.obs;
 
   @override
-  void onInit() {
-    super.onInit();
+  void onReady() {
+    super.onReady();
     fetchData(); // Fetch data when the controller initializes
   }
 
   Future<void> fetchData() async {
     try {
       isLoading.value = true;
-      print(isLoading.value);
+      // print(isLoading.value);
       var url =
           Uri.parse(ApiEndpoints.baseUrl + ApiEndpoints.authEndPoints.getInbox);
       String user = storage.read('username');

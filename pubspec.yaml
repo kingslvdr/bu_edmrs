@@ -48,6 +48,7 @@ dependencies:
   data_table_2: ^2.5.15
   art_sweetalert: ^0.0.5
   lottie: ^3.1.2
+  ndialog: ^4.3.1
   # awesome_dialog: ^3.2.1
   
 dev_dependencies:
